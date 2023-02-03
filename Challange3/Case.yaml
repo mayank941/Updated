@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: case-pod
+spec:
+  containers:
+    - name: uat
+      image: container_image
+      command: ["sleep", "3600"]
+      env:
+        - name: username 
+          valueFrom:
+            configMapKeyRef:
+              name: case-demo          
+              key: username
+      volumeMounts:
+      - name: config
+        mountPath: "/config"
+        readOnly: true
+  volumes:
+  - name: config
+    configMap:
+      name: case-demo
+      items:
+      - key: "hostname.properties"
+        path: "hostname.properties"
+      - key: "URL.properties"
+        path: "URL.properties"
+        

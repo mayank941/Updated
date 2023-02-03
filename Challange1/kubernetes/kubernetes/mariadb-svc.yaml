@@ -12,4 +12,6 @@ spec:
   ports:
   - port: 3306
     targetPort: db-port
-  type: ClusterIP 
+  type: ClusterIP
+
+
